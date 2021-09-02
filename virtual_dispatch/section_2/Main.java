@@ -11,7 +11,9 @@ public class Main {
     public static void main(String[] args) {
         boolean userWantsConsole = doesUserWantConsole(args);
         String destinationFile = getDestinationFile(args);
-        Writer writer = new Writer(userWantsConsole, destinationFile);
+        IpAddress address = getIpAddress(args);
+        
+        Writer writer = new Writer(userWantsConsole, destinationFile, address);
         
         int output = doComputation(writer);
 
