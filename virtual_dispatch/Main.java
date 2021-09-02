@@ -1,28 +1,12 @@
 public class Main {
-    // Nesting if's
-    // passing same variables repeatedly
-    // doComputation itself doesn't need userWantsConsole
-    // stream is a global variable
-    
-    public static void writeThing(boolean userWantsConsole,
-                                  String destinationFile,
-                                  int thingToWrite) {
-        if (userWantsConsole) {
-            System.out.println(thingToWrite);
-        } else {
-            if (stream == null) {
-                File file = new File(destinationFile);
-                stream = new FileOutputStream(file);
-            }
-            stream.writeln(thingToWrite);
-        }
-    }
-    
-    public static int doComputation(boolean userWantsConsole,
-                                    String destinationFile) {
+    // passing same variables repeatedly - reduced
+        
+    public static int doComputation(Writer writer) {
         // do some computation
         int output = ...; // intended to be some complex calculation
-        writeThing(userWantsConsole, destinationFile, output);
+        writer.writeThing(output);
+
+        return 42;
     }
     
     // Takes some arguments from the user
@@ -32,12 +16,11 @@ public class Main {
     public static void main(String[] args) {
         boolean userWantsConsole = doesUserWantConsole(args);
         String destinationFile = getDestinationFile(args);
+        Writer writer = new Writer(userWantsConsole, destinationFile);
+        
+        int output = doComputation(writer);
+        writer.writeThing(output);
 
-        int output = doComputation(userWantsConsole, destinationFile);
-        writeThing(userWantsConsole, destinationFile, output);
-
-        if (stream != null) {
-            stream.close();
-        }
+        writer.close();
     }
 }
