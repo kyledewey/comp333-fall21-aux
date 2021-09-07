@@ -1,6 +1,8 @@
 public class Main {
-    // passing same variables repeatedly - reduced
-        
+    // defined on Main class
+    // 
+    // Main.doComputation(...); // target must be specified;
+    //                             target must be a class
     public static int doComputation(Writer writer) {
         // do some computation
         int output = ...; // intended to be some complex calculation
@@ -16,7 +18,11 @@ public class Main {
     public static void main(String[] args) {
         boolean userWantsConsole = doesUserWantConsole(args);
         String destinationFile = getDestinationFile(args);
-        Writer writer = new Writer(userWantsConsole, destinationFile);
+        IpAddress address = getIPAddress(args);
+
+        Writer writer = new Writer(userWantsConsole,
+                                   destinationFile,
+                                   address);
         
         int output = doComputation(writer);
         writer.writeThing(output);
