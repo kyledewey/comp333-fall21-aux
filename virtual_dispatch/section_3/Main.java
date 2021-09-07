@@ -1,26 +1,8 @@
-public class Main {
-    // stream is a global variable
-    // error-handling
-    // userWantsConsole and destinationFile are one unit
-    private static FileOutputStream stream = null;
-    
-    public static void writeThing(boolean userWantsConsole,
-                                  String destinationFile,
-                                  int thingToWrite) {
-        if (userWantsConsole) {
-            System.out.println(thingToWrite);
-        } else {
-            stream.writeln(thingToWrite);
-        }
-    }
-    
-    public static int doComputation(boolean userWantsConsole,
-                                    String destinationFile) {
+public class Main {    
+    public static int doComputation(Writer writer) {
         int intermediateValue = 32; // some long-running computation
 
-        writeThing(userWantsConsole,
-                   destinationFile,
-                   intermediateValue);
+        writer.writeThing(intermediateValue);
 
         return intermediateValue + 42;
     }
@@ -28,18 +10,12 @@ public class Main {
     public static void main(String[] args) {
         boolean userWantsConsole = doesUserWantConsole(args);
         String destinationFile = getDestinationFile(args);
+        Writer writer = new Writer(userWantsConsole, destinationFile);
 
-        if (!userWantsConsole) {
-            File file = new File(destinationFile);
-            stream = new FileOutputStream(file);
-        }
-        
-        int output = doComputation(userWantsConsole, destinationFile);
+        int output = doComputation(writer);
 
-        writeThing(userWantsConsole,
-                   destinationFile,
-                   output);
+        writer.writeThing(output);
 
-        stream.close();
+        writer.close();
     }
 }
