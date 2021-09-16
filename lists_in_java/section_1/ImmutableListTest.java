@@ -85,16 +85,17 @@ public class ImmutableListTest {
     // ---BEGIN SUM TESTS---
     @Test
     public void sumLength0() {
-        assertEquals(0, new Nil().sum());
+        assertEquals(0, new Nil().sum()); // [] returns 0
     } // sumLength0
 
     @Test
     public void sumLength1() {
-        assertEquals(5, new Cons(5, new Nil()).sum());
+        assertEquals(5, new Cons(5, new Nil()).sum()); // [5] returns 5
     } // sumLength1
 
     @Test
     public void sumLength2() {
+        // [-1, 4] returns 3
         assertEquals(3, new Cons(-1, new Cons(4, new Nil())).sum());
     } // sumLength2
 

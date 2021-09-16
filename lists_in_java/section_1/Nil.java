@@ -25,5 +25,13 @@ public class Nil implements ImmutableList {
     public ImmutableList take(int numElements) {
         return new Nil();
     }
+
+    // amount: ???
+    // this: Nil // []
+    public ImmutableList addAmount(int amount) {
+        // returns []
+        // return new Nil();
+        return this;
+    }
 } // Nil
-    
+
