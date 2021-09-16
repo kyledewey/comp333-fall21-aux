@@ -30,4 +30,12 @@ public interface ImmutableList {
     // [8, 9, 10].drop(4); // returns []
     // [].drop(1);         // returns []
     public ImmutableList drop(int amount);
+
+    // [].take(1);        // returns []
+    // [8, 9, 10].take(0) // returns []
+    // [8, 9, 10].take(1) // returns [8]
+    // [8, 9, 10].take(2) // returns [8, 9]
+    // [8, 9, 10].take(3) // returns [8, 9, 10]
+    // [8, 9, 10].take(4) // returns [8, 9, 10]
+    public ImmutableList take(int amount);
 } // ImmutableList

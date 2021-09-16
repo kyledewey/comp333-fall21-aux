@@ -62,16 +62,19 @@ public class ImmutableListTest {
     // ---BEGIN LENGTH TESTS---
     @Test
     public void lengthLength0() {
+        // [].length() returns 0
         assertEquals(0, new Nil().length());
     } // lengthLength0
 
     @Test
     public void lengthLength1() {
+        // [-80].length() returns 1
         assertEquals(1, new Cons(-80, new Nil()).length()); // [-80]
     } // lengthLength1
 
     @Test
     public void lengthLength2() {
+        // [-12, 5].length() returns 2
         assertEquals(2, new Cons(-12, new Cons(5, new Nil())).length()); // [-12, 5]
     } // lengthLength2
 

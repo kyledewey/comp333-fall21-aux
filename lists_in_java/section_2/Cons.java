@@ -53,6 +53,8 @@ public class Cons implements ImmutableList {
     // tail: [2, 3]
     // this: [1, 2, 3]
     // return value: [5, 6, 7]
+    //
+    // O(n)
     public ImmutableList addAmount(int amount) {
         // rest = [2, 3].addAmount(4)
         // rest = new Cons(2, new Cons(3, new Nil())).addAmount(4)
@@ -62,6 +64,7 @@ public class Cons implements ImmutableList {
     }
 
     // [8, 9, 10].drop(1) ==> [9, 10].drop(0) ==> [9, 10]
+    // O(n)
     public ImmutableList drop(int amount) {
         if (amount <= 0) {
             return this;
@@ -69,4 +72,33 @@ public class Cons implements ImmutableList {
             return tail.drop(amount - 1);
         }
     }
+
+    // [8, 9, 10].take(1) // returns [8]
+    // Cons(8, Cons(9, Cons(10, Nil))).take(1)
+    //
+    // amount: 1
+    // head: 8
+    // tail: Cons(9, Cons(10, Nil)) // [9, 10]
+    // this: Cons(8, Cons(9, Cons(10, Nil))) // [8, 9, 10]
+    public ImmutableList take(int amount) {
+        if (amount <= 0) {
+            return new Nil();
+        } else {
+            // [8, 9, 10].take(1) ==> 8 :: [9, 10].take(0)
+            //
+            // [9, 10].take(0) ==> []
+            ImmutableList rest = tail.take(amount - 1);
+            return new Cons(head, rest); // [8]
+        }
+    }
+
+    // shorter version - does the same thing
+    // take: O(n)
+    public ImmutableList take(int amount) {
+        return (amount <= 0) ? new Nil() : new Cons(head, tail.take(amount - 1));
+    }
+    
+    // mergesort: O(n lg(n))
+    // O(lg(n)) recursive calls to mergesort
+    
 } // Cons

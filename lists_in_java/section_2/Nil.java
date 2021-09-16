@@ -33,12 +33,17 @@ public class Nil implements ImmutableList {
         return true;
     }
 
+    // this: Nil
     public ImmutableList addAmount(int amount) {
-        return new Nil();
+        return this;
     }
 
     public ImmutableList drop(int amount) {
-        return new Nil();
+        return this;
+    }
+
+    public ImmutableList take(int amount) {
+        return this;
     }
 } // Nil
 
