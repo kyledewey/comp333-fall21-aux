@@ -20,3 +20,6 @@ function doSomething(x) {
         return "hello";
     }
 }
+
+// statically typed, with type inference
+
