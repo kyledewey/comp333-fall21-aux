@@ -33,8 +33,56 @@ public class Cons implements ImmutableList {
         return false;
     }
 
-    // recursive case
+    // [8, 9, 10].addAmount(4); // returns [8 + 4, 9 + 4, 10 + 4] ==> [12, 13, 14]
+    // Cons(8, Cons(9, Cons(10, Nil))).addAmount(4);
+    //
+    // amount: 4
+    // head: 8
+    // tail: Cons(9, Cons(10, Nil))
+    // this: Cons(8, Cons(9, Cons(10, Nil)))
+    // return value: Cons(12, Cons(13, Cons(14, Nil)))
+    // return value: [12, 13, 14]
     public ImmutableList addAmount(int amount) {
-        //
+        ImmutableList rest = tail.addAmount(amount);
+        // rest: Cons(13, Cons(14, Nil))
+        // rest: [13, 14]
+
+        // wanted: stitch one element on front
+        // needs to be something that gives you a list
+        int newHeadAmount = amount + head;
+        // newHeadAmount: 12
+
+        return new Cons(newHeadAmount, rest); // Cons(12, Cons(13, Cons(14, Nil)))
+    }
+
+    // as a one-liner
+    public ImmutableList addAmount(int amount) {
+        return new Cons(amount + head, tail.addAmount(amount));
+    }
+    
+    // [8, 9, 10].drop(2);   // returns [10]
+    //   Cons(8, Cons(9, Cons(10, Nil))).drop(2)  // returns Cons(10, Nil)
+    //
+    // number: 2
+    // head: 8
+    // tail: Cons(9, Cons(10, Nil))
+    // this: Cons(8, Cons(9, Cons(10, Nil)))
+    //
+    // Cons(8, Cons(9, Cons(10, Nil))).drop(2) ==>
+    //   Cons(9, Cons(10, Nil)).drop(1) ==>
+    //     Cons(10, Nil).drop(0) ==>
+    //       Cons(10, Nil)
+    //
+    // [9, 10].drop(1) ==> [10] ==> Cons(10, Nil)
+    public ImmutableList drop(int number) {
+        if (number <= 0) {
+            return this;
+        } else {
+            // what if number is 0?
+            ImmutableList rest = tail.drop(number - 1);
+            // [9, 10].drop(1) ==> [10] ==> Cons(10, Nil)
+            // rest: [10] // Cons(10, Nil)
+            return rest;
+        }
     }
 } // Cons

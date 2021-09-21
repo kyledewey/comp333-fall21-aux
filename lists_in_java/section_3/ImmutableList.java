@@ -27,10 +27,24 @@ public interface ImmutableList {
 
 
     // [].addAmount(4);         // returns []
-    // [8, 9, 10].addAmount(4); // returns [12, 13, 14]
-    // [8].addAmount(3);        // returns [11]
+    // [8, 9, 10].addAmount(4); // returns [8 + 4, 9 + 4, 10 + 4] ==> [12, 13, 14]
+    // [8].addAmount(3);        // returns [8 + 3] ==> [11]
     // [3, 7].addAmount(1);     // returns [4, 8]
+    // [3, 7].addAmount(10);    // returns [13, 17]
     public ImmutableList addAmount(int amount);
+
+
+    // [8, 9, 10].drop(-5);  // returns [8, 9, 10]
+    //   Cons(8, Cons(9, Cons(10, Nil))).drop(-5)
+    // [8, 9, 10].drop(0);   // returns [8, 9, 10]
+    // [8, 9, 10].drop(2);   // returns [10]
+    // [3, 8, 2, 7].drop(1); // returns [8, 2, 7]
+    // [3, 7, 1, 0].drop(4); // returns []
+    // [6, 2, 3].drop(10);   // returns []
+    // [].drop(3);           // returns []
+    //   Nil.drop(3);
+    public ImmutableList drop(int number);
+    
     //
     // public ImmutableList addAmount(int amount) {
     //   if (head is null) {

@@ -22,6 +22,11 @@ public class Nil implements ImmutableList {
     // base case
     // [].addAmount(4); // returns []
     public ImmutableList addAmount(int amount) {
+        return this;
+        //return new Nil();
+    }
+
+    public ImmutableList drop(int number) {
         return new Nil();
     }
 } // Nil
