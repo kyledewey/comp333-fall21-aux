@@ -1,4 +1,7 @@
 // head of higher-order functions / anonymous functions / lambdas / closures: hit yes
+// Java: Lambdas
+
+// higher-order functions: functions are data
 
 // comparison: function
 function printSome(array, comparison) {
@@ -32,10 +35,18 @@ function printAllLessThanFive(array) {
 }
 
 function printAllGreaterThan(array, value) {
-    printSome(array,
-              function (currentElement) {
-                  return currentElement > value;
-              });
+    // close-over value
+    // higher-order functions that capture values must allocate memory
+    // where they are created
+    printSome(array, currentElement => currentElement > value);
+
+    //return e => e + value;
+    
+    // printSome(array,
+    //           function (currentElement) {
+    //               return currentElement > value;
+    //           });
+
     // for (let index = 0; index < array.length; index++) {
     //     let element = array[index];
     //     if (element > value) {
@@ -45,10 +56,13 @@ function printAllGreaterThan(array, value) {
 }
 
 function printAllNotEqual(array, value) {
-    printSome(array,
-              function (element) {
-                  return element != value;
-              });
+    printSome(array, element => element != value);
+    
+    // printSome(array,
+    //           function (element) {
+    //               return element != value;
+    //           });
+
     // for (let index = 0; index < array.length; index++) {
     //     let element = array[index];
     //     if (element != value) {
