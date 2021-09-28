@@ -28,10 +28,20 @@ public class Nil implements ImmutableList {
 
     // amount: ???
     // this: Nil // []
+    //
+    // [].addAmount(14) ==> []
     public ImmutableList addAmount(int amount) {
         // returns []
         // return new Nil();
         return this;
     }
+
+    // [1, 2, 3].append([4, 5, 6])
+    //  1 :: [2, 3].append([4, 5, 6])
+    //
+    // [].append([17, 32]) ==> [17, 32]
+    // [].append([1, 2, 3]) ==> [1, 2, 3]
+
+    // [1, 2, 3].append([8, 1, 2]) ==> [1, 2, 3] // not correct
 } // Nil
 

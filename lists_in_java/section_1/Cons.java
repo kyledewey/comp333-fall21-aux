@@ -77,6 +77,25 @@ public class Cons implements ImmutableList {
     // (1 + 4) :: ((2 + 4) :: [7])
     // (1 + 4) :: [6, 7]
     // [5, 6, 7]
+
+    public static void testCast() {
+        Object obj = "hello";
+        // String s = obj; // doesn't compile
+        String s = (String)obj; // does compile
+    }
+    
+    public static ImmutableList addAmountStatic(ImmutableList input, int amount) {
+        if (input instanceof Nil) {
+            // base case
+            return new Nil();
+        } else {
+            // recursive case - must be a Cons
+            Cons asCons = (Cons)input; // cast
+            // input.tail - doesn't compile, since ImmutableList doesn't have a tail field
+            ImmutableList rest = addAmountStatic(asCons.tail, amount);
+            return new Cons(asCons.head + amount, rest);
+        }
+    }
     
     // [1, 2, 3].addAmount(4); // returns [5, 6, 7]
     //
@@ -91,6 +110,13 @@ public class Cons implements ImmutableList {
         // // wanted: 5 + [6, 7]
         // return new Cons(head + amount, rest); // [5, 6, 7]
 
+        // tail.addAmount(amount);
+        // if (tail instanceof Nil) {
+        //   return addAmountForNil(...)
+        // } else {
+        //   return addAmountForCons(...)
+        // }
+        
         return new Cons(head + amount, tail.addAmount(amount));
     }
 } // Cons
