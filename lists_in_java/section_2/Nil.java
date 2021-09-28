@@ -21,6 +21,9 @@ public class Nil implements ImmutableList {
         return 0;
     }
     
+    // [].append([1, 2, 3]) ==> [1, 2, 3]
+    // [].append([1])       ==> [1]
+    // [].append([])        ==> []
     public ImmutableList append(final ImmutableList other) {
         return null;
     }

@@ -33,7 +33,9 @@ public class Cons implements ImmutableList {
     public int sum() {
         return 0;
     }
-    
+
+    // [1, 2, 3].append([4, 5, 6]) ==>
+    //   1 :: [2, 3].append([4, 5, 6])
     public ImmutableList append(final ImmutableList other) {
         return null;
     }
@@ -46,6 +48,31 @@ public class Cons implements ImmutableList {
         return false;
     }
 
+    public static void castTest() {
+        Object obj = "foo";
+        String s = (String)obj; // compiles, runtime check that obj is a String
+    }
+    
+    public static ImmutableList addAmountStatic(ImmutableList input, int amount) {
+        // tail.addAmount(amount);
+        // if (tail instanceof Nil) {
+        //   return addAmountForNil(...);
+        // } else {
+        //   return addAmountForCons(...);
+        // }
+        
+        if (input instanceof Nil) {
+            // base case
+            return new Nil();
+        } else {
+            // recursive case
+            // we know it's a Cons
+            Cons asCons = (Cons)input; // cast
+            ImmutableList rest = addAmountStatic(asCons.tail, amount);
+            return new Cons(asCons.head + amount, rest);
+        }
+    }
+    
     // [1, 2, 3].addAmount(4)
     // 
     // amount: 4

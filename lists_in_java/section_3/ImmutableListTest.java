@@ -187,6 +187,11 @@ public class ImmutableListTest {
     } // containsNil
 
     @Test
+    public void notContainsFirstElement() {
+        assertFalse(new Cons(1, new Nil()).contains(2));
+    } // containsFirstElement
+
+    @Test
     public void containsFirstElement() {
         assertTrue(new Cons(1, new Nil()).contains(1));
     } // containsFirstElement

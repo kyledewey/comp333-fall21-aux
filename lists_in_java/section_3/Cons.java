@@ -33,6 +33,41 @@ public class Cons implements ImmutableList {
         return false;
     }
 
+    // [8, 2, 9].length() ==> 3
+    // [9, 1, 4, 7].length() ==> 4
+    // [9, 1].length() ==> 2
+    //
+    // [8, 2, 9].length()
+    //    1 + [2, 9].length()
+
+    public static void castExample() {
+        Object obj = "hello"; // ok - subtyping (String is an Object)
+        String s = (String)obj; // now compiles with the cast
+    }
+    
+    public static ImmutableList addAmountStatic(ImmutableList input, int amount) {
+        // tail.addAmount(amount);
+        //
+        // if (tail instanceof Nil) {
+        //   return addAmountForNil(...);
+        // } else {
+        //   return addAmountForCons(...);
+        // }
+
+
+        // input could be Cons or Nil
+        if (input instanceof Nil) {
+            // base case
+            return new Nil();
+        } else {
+            // recursive case
+            // input must be a Cons
+            Cons asCons = (Cons)input; // cast - if you've seen this before, hit yes
+            ImmutableList rest = addAmountStatic(asCons.tail, amount);
+            return new Cons(asCons.head + amount, rest);
+        }
+    }
+    
     // [8, 9, 10].addAmount(4); // returns [8 + 4, 9 + 4, 10 + 4] ==> [12, 13, 14]
     // Cons(8, Cons(9, Cons(10, Nil))).addAmount(4);
     //

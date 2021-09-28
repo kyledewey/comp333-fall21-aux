@@ -29,5 +29,10 @@ public class Nil implements ImmutableList {
     public ImmutableList drop(int number) {
         return new Nil();
     }
+
+    // [].length() ==> 0
+    // [].sum() ==> 0
+    // [].append([1, 2, 3]) ==> [1, 2, 3]
+    // [].contains(30) ==> false
 } // Nil
     
