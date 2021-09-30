@@ -4,7 +4,7 @@
 // synonyms: anonymous functions
 
 // printSome = function (array, operation) { ... };
-
+// operation: function, takes one parameter, returns boolean value
 function printSome(array, operation) {
     for (let index = 0; index < array.length; index++) {
         let element = array[index];
