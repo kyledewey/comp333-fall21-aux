@@ -41,6 +41,18 @@ function product(array) {
 // accumlator: starting value
 // operation: function (takes current accumulator and current array element),
 //            returns the new accumulator
+
+// > array.reduce((accum, element) => accum + element, 0)
+// 28
+// > array.reduce((accum, element) => (accum = accum + element), 0)
+// 28
+// > array.reduce((accum, element) => accum + 1, 0)
+// 7
+// > array.reduce((accum, element) => accum++, 0)
+// 0
+// > array.reduce((accum, element) => ++accum, 0)
+// 7
+
 function doReduce(array, accumulator, operation) {
     for (let index = 0; index < array.length; index++) {
         accumulator = operation(accumulator, array[index]);
