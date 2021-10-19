@@ -12,24 +12,22 @@ function add(first, second) {
     return first + second;
 }
 
-let rectanglePrototype = {
-    'getArea': function() {
-        return this.width * this.height;
-    }
-};
+// let rectanglePrototype = {
+//     'getArea': function() {
+//         return this.width * this.height;
+//     }
+// };
 
+// Rectangle.prototype = {}; // Implicitly happens
 function Rectangle(width, height) {
-    // this: {}
-    // in context of a constructor: `this` refers to the object
-    // being constructed
+    // this.__proto__ = Rectangle.prototype; // Implicitly happens
     this.width = width;
     this.height = height;
-    // this.getArea = function() {
-    //     // in context of a method: `this` refers to the object
-    //     // you called the method on
-    //     return this.width * this.height;
-    // };
-    this.__proto__ = rectanglePrototype;
+    // this.__proto__ = rectanglePrototype;
+}
+Rectangle.prototype.getArea = function() {
+    return this.width * this.height;
 }
 
 // prototype-based inheritance, in contrast to class-based inheritance
+            
