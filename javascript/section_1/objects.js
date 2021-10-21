@@ -18,6 +18,8 @@ function add(first, second) {
 //     }
 // };
 
+function Shape() {}
+
 // Rectangle.prototype = {}; // Implicitly happens
 function Rectangle(width, height) {
     // this.__proto__ = Rectangle.prototype; // Implicitly happens
@@ -25,6 +27,7 @@ function Rectangle(width, height) {
     this.height = height;
     // this.__proto__ = rectanglePrototype;
 }
+Rectangle.prototype = new Shape();
 Rectangle.prototype.getArea = function() {
     return this.width * this.height;
 }
