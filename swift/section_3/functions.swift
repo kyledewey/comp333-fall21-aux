@@ -55,3 +55,6 @@ print(temp6);
 
 let mult/*: (Int, Int) -> Int*/ = { (a: Int, b) in a * b };
 print(mult(7, 8));
+
+let thunk: () -> Int = { 2 + 2 };
+

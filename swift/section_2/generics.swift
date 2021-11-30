@@ -10,7 +10,7 @@ indirect enum List<A> { // List is parameterized by A
     case Nil
     //        uses the the type variable
     //        |
-    case Cons(A, List)
+    case Cons(A, List<A>)
 }
 
 // type variables on functions: parametric polymorphism (generics)
