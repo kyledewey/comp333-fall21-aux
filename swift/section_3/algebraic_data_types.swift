@@ -49,3 +49,16 @@ let tree2 = BinaryTree.InternalNode(BinaryTree.InternalNode(..., 2, ...),
                                     BinaryTree.InternalNode(..., 4, ...))
 
 tree2.sum()
+
+
+// Swift code
+// switch list {
+// case .Cons(_, .Cons(2, _)):
+// }
+//
+// Java equivalent:
+// if (list instanceof Cons &&
+//     ((Cons)list).tail instanceof Cons &&
+//     ((Cons)((Cons)list).tail).head == 2) {
+    
+    
