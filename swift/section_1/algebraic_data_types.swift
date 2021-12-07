@@ -97,3 +97,8 @@ func sum(_ tree: BinaryTree) -> Int {
         return sum(leftTree) + value + sum(rightTree)
     }
 }
+
+indirect enum MyList {
+   case cons(Int, MyList)
+   case empty
+}
