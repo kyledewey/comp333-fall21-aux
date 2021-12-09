@@ -9,7 +9,7 @@ public class NetworkWriter implements Writer {
         socket.writeln(thing);
     }
 
-    public voic close() {
+    public void close() {
         socket.close();
     }
 }
